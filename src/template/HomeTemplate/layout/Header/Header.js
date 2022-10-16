@@ -102,14 +102,13 @@ function classNames(...classes) {
 
 export default function Header() {
   return (
-    <Popover className="relative bg-white">
+    <Popover className="fixed bg-white z-40 w-full">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <NavLink to="#">
               <span className="sr-only">Movie time</span>
               <img className="h-8 w-auto sm:h-10" src={logo} alt="logo" />
-              
             </NavLink>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
@@ -128,7 +127,7 @@ export default function Header() {
                       "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     )}
                   >
-                    <span>Solutions</span>
+                    <span className="text-lg font-bold">Lịch chiếu</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? "text-gray-600" : "text-gray-400",
@@ -196,15 +195,15 @@ export default function Header() {
 
             <NavLink
               to="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
+              className="text-base font-bold text-gray-500 hover:text-gray-900"
             >
-              Pricing
+              Rạp
             </NavLink>
             <NavLink
               to="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
+              className="text-base font-bold text-gray-500 hover:text-gray-900"
             >
-              Docs
+              Tin tức
             </NavLink>
 
             <Popover className="relative">
@@ -213,10 +212,10 @@ export default function Header() {
                   <Popover.Button
                     className={classNames(
                       open ? "text-gray-900" : "text-gray-500",
-                      "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      "group inline-flex items-center rounded-md bg-white text-base font-bold hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     )}
                   >
-                    <span>More</span>
+                    <span>Ứng dụng</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? "text-gray-600" : "text-gray-400",
@@ -300,13 +299,13 @@ export default function Header() {
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
             <NavLink
               to="#"
-              className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+              className="whitespace-nowrap text-base font-bold text-gray-500 hover:text-cyan-400"
             >
               Sign in
             </NavLink>
             <NavLink
               to="#"
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-cyan-400 px-4 py-2 text-base font-bold text-white shadow-sm hover:bg-cyan-500 hover:text-white"
             >
               Sign up
             </NavLink>
@@ -388,7 +387,7 @@ export default function Header() {
               <div>
                 <NavLink
                   to="#"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-400 px-4 py-2 text-base font-bold text-white shadow-sm hover:text-white"
                 >
                   Sign up
                 </NavLink>
