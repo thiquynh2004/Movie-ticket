@@ -13,17 +13,17 @@ export default function NowShowing(props) {
     return arrPhimDangChieu.map((film, index) => {
       return (
         <SwiperSlide key={index}>
-          <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <div
-              style={{
-                backgroundImage: `url(${film.hinhAnh})`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                height: "400px",
-                width: "290px",
-              }}
-            ></div>
+          <div
+            key={index}
+            className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden"
+          >
+            <div>
+              <img
+                style={{ objectFit: "contain", height: "200px" }}
+                src={film.hinhAnh}
+                alt={film.tenPhim}
+              />
+            </div>
             <div className="p-6 h-36">
               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                 CATEGORY

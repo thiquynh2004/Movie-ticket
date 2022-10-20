@@ -6,11 +6,15 @@ import { layDanhSachPhimAction } from "../../redux/actions/QuanLyPhimAction";
 import ListFilm from "./ListFilms/ListFilm";
 import "./home.css";
 import News from "./News/News";
+import Cinema from "../Cinema/Cinema";
+import { layThongTinLichChieuHeThongRapAction } from "../../redux/actions/QuanLyRapAction";
 export default function Home() {
   const { arrFilm } = useSelector((state) => state.QuanLyPhimReducer);
-  console.log("arr", arrFilm);
+  const {arrHeThongRap} = useSelector((state) => state.QuanLyRapReducer);
+  // const {arrCumRap} = useSelector((state) => state.QuanLyRapReducer);
+  console.log("arrHeThongRap", arrHeThongRap)
+  // console.log("arrCumRap", arrCumRap)
   const dispatch = useDispatch();
-
   const arrPhimDangChieu = arrFilm.filter(function (item) {
     return item.dangChieu === true;
   });
@@ -18,9 +22,12 @@ export default function Home() {
   const arrPhimSapChieu = arrFilm.filter(function (item) {
     return item.sapChieu === true;
   });
-  console.log("arrPhimDangChieu", arrPhimDangChieu);
   useEffect(() => {
     dispatch(layDanhSachPhimAction());
+  }, []);
+  useEffect(() => {
+    dispatch(layThongTinLichChieuHeThongRapAction());
+    // dispatch(layThongTinCumRapTheoHeThongAction(arrHeThongRap.maHeThongRap))
   }, []);
 
   return (
@@ -34,6 +41,9 @@ export default function Home() {
         </div>
         <div className="news">
           <News />
+        </div>
+        <div className="cinema">
+          <Cinema arrHeThongRap={arrHeThongRap}/>
         </div>
       </div>
     </div>
