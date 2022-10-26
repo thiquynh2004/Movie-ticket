@@ -1,0 +1,10 @@
+.film-detail{
+    background-image: url(../../asset/image/movie-details-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.film-information{
+    padding-top:20px;
+}

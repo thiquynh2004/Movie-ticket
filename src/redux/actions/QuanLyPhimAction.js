@@ -1,5 +1,5 @@
 import { quanLyPhimService } from "../../service/QuanLyPhimService"
-import { LAY_DANH_SACH_BANNER, LAY_DANH_SACH_PHIM } from "./types/QuanLyPhimType";
+import { LAY_DANH_SACH_BANNER, LAY_DANH_SACH_PHIM} from "./types/QuanLyPhimType";
 
 export const layDanhSachBannerAction = () => {
     return async (dispatch) => {
@@ -30,3 +30,20 @@ export const layDanhSachBannerAction = () => {
         }
     }
  }
+
+//  export const layThongTinPhimAction = (MaPhim) =>{
+//     return async (dispatch) => {
+//         try {
+//             const result = await quanLyPhimService.layThongTinPhim(MaPhim);
+//             console.log('result', result);
+//             if(result.status === 200) {
+//                 dispatch({
+//                     type: LAY_THONG_TIN_PHIM,
+//                     filmDetail: result.data.content
+//                 })
+//             }
+//         } catch (error) {
+//             console.log("error", error.response?.data)
+//         }
+//     }
+//  }

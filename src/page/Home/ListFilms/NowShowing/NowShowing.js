@@ -6,8 +6,11 @@ import "swiper/css/navigation";
 
 import "./nowShowing.css";
 import { Pagination, Navigation } from "swiper";
+import { useNavigate } from "react-router-dom";
+// import { history } from "../../../../App";
 
 export default function NowShowing(props) {
+  const navigate = useNavigate()
   const { arrPhimDangChieu } = props;
   const renderPhimDangChieu = () => {
     return arrPhimDangChieu.map((film, index) => {
@@ -15,16 +18,24 @@ export default function NowShowing(props) {
         <SwiperSlide key={index}>
           <div
             key={index}
-            className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden"
+            className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden cursor-pointer"
+            onClick={()=>{
+              navigate(`/detail/${film.maPhim}`)
+            }}
           >
-            <div>
+            <div className="h-64 w-full overflow-hidden ">
               <img
-                style={{ objectFit: "contain", height: "200px" }}
+                className="transition ease-in-out delay-200 hover:scale-110 overflow-hidden"
+                style={{ objectFit: "contain"}}
                 src={film.hinhAnh}
                 alt={film.tenPhim}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src="../";
+                }}
               />
             </div>
-            <div className="p-6 h-36">
+            <div className="p-2 h-28">
               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                 CATEGORY
               </h2>
