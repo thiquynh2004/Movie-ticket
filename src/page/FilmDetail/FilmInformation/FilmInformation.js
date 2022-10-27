@@ -1,21 +1,25 @@
 // import { Rate } from "antd";
-import { Rate } from "antd";
+import { DatePicker, Rate } from "antd";
 import React from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import moment from "moment";
 
 export default function FilmInformation(props) {
   const { filmDetail } = props;
   console.log("filmDetail", filmDetail);
-
+  const openTrailer = () => {
+    <NavLink to={filmDetail.trailer}></NavLink>;
+  };
+  const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
   return (
     <>
-      <div style={{ paddingTop: "80px" }}>
+      <div style={{ paddingTop: "40px" }}>
         <section className="text-gray-600 body-font overflow-hidden ">
           <div className="container px-5 py-24 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
               <img
                 alt="ecommerce"
-                className="lg:w-1/2 w-full lg:h-auto object-cover object-center rounded"
+                className="lg:w-1/2 w-full lg:h-auto object-cover object-center rounded my-0 mx-auto"
                 style={{ height: "75vh", width: "auto" }}
                 src={filmDetail.hinhAnh}
               />
@@ -75,15 +79,25 @@ export default function FilmInformation(props) {
                     </NavLink>
                   </span>
                 </div>
-                <p className="leading-relaxed text-white opacity-40">
+                <p className="leading-relaxed text-white opacity-50">
                   {filmDetail.moTa}
                 </p>
+                <div className="leading-relaxed text-white my-2">
+                  Ngày khởi chiếu:{" "}
+                  <DatePicker
+                    value={moment(filmDetail.ngayChieuGioChieu)}
+                    format={dateFormatList}
+                  />
+                </div>
 
-                <div className="flex">
-                  <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                <div className="flex ">
+                  <button
+                    className=" m-4 text-white bg-orange-700 border-0 py-2 px-6 focus:outline-none hover:bg-orange-500 rounded"
+                    onClick={openTrailer()}
+                  >
                     Xem Trailer
                   </button>
-                  <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                  <button className=" m-4 text-white bg-cyan-700 border-0 py-2 px-6 focus:outline-none hover:bg-cyan-500 rounded">
                     Đặt vé
                   </button>
                 </div>

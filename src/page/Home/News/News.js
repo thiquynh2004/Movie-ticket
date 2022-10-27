@@ -10,8 +10,8 @@ import { NavLink } from "react-router-dom";
 
 export default function News() {
   return (
-    <div className="news py-28">
-      <h1 className="m-5 text-center text-3xl font-bold text-cyan-600">
+    <div className="news py-28 mx-6">
+      <h1 className="m-5 text-center text-3xl font-bold text-cyan-600 ">
         KHUYẾN MÃI
       </h1>
       <Swiper slidesPerView={3} spaceBetween={30} className="mySwiper">

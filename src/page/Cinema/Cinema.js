@@ -19,7 +19,7 @@ export default function Cinema(props) {
 
 
   return (
-    <div>
+    <div className="mx-6">
       <Space
         style={{
           marginBottom: 24,

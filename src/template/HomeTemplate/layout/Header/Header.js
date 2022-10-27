@@ -2,15 +2,9 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  BookmarkSquareIcon,
-  CalendarIcon,
   ChartBarIcon,
   CursorArrowRaysIcon,
-  LifebuoyIcon,
-  PhoneIcon,
-  PlayIcon,
   ShieldCheckIcon,
   Squares2X2Icon,
   XMarkIcon,
@@ -20,82 +14,32 @@ import { NavLink } from "react-router-dom";
 import logo from "../../../../asset/image/movie-icon.png";
 const solutions = [
   {
-    name: "Analytics",
+    name: "Lịch chiếu",
     description:
       "Get NavLink better understanding of where your traffic is coming from.",
     to: "#",
     icon: ChartBarIcon,
   },
   {
-    name: "Engagement",
+    name: "Rạp",
     description:
       "Speak directly to your customers in NavLink more meaningful way.",
     to: "#",
     icon: CursorArrowRaysIcon,
   },
   {
-    name: "Security",
+    name: "Tin tức",
     description: "Your customers' data will be safe and secure.",
     to: "#",
     icon: ShieldCheckIcon,
   },
   {
-    name: "Integrations",
+    name: "Ứng dụng",
     description: "Connect with third-party tools that you're already using.",
     to: "#",
     icon: Squares2X2Icon,
   },
-  {
-    name: "Automations",
-    description:
-      "Build strategic funnels that will drive your customers to convert",
-    to: "#",
-    icon: ArrowPathIcon,
-  },
-];
-const callsToAction = [
-  { name: "Watch Demo", to: "#", icon: PlayIcon },
-  { name: "Contact Sales", to: "#", icon: PhoneIcon },
-];
-const resources = [
-  {
-    name: "Help Center",
-    description:
-      "Get all of your questions answered in our forums or contact support.",
-    to: "#",
-    icon: LifebuoyIcon,
-  },
-  {
-    name: "Guides",
-    description:
-      "Learn how to maximize our platform to get the most out of it.",
-    to: "#",
-    icon: BookmarkSquareIcon,
-  },
-  {
-    name: "Events",
-    description:
-      "See what meet-ups and other events we might be planning near you.",
-    to: "#",
-    icon: CalendarIcon,
-  },
-  {
-    name: "Security",
-    description: "Understand how we take your privacy seriously.",
-    to: "#",
-    icon: ShieldCheckIcon,
-  },
-];
-const recentPosts = [
-  { id: 1, name: "Boost your conversion rate", to: "#" },
-  {
-    id: 2,
-    name: "How to use search engine optimization to drive traffic to your site",
-    to: "#",
-  },
-  { id: 3, name: "Improve your customer experience", to: "#" },
-];
-
+]
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -170,22 +114,7 @@ export default function Header() {
                             </NavLink>
                           ))}
                         </div>
-                        <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                          {callsToAction.map((item) => (
-                            <div key={item.name} className="flow-root">
-                              <NavLink
-                                to={item.to}
-                                className="-m-3 flex items-center rounded-md p-3 text-base font-medium text-gray-900 hover:bg-gray-100"
-                              >
-                                <item.icon
-                                  className="h-6 w-6 flex-shrink-0 text-gray-400"
-                                  aria-hidden="true"
-                                />
-                                <span className="ml-3">{item.name}</span>
-                              </NavLink>
-                            </div>
-                          ))}
-                        </div>
+                      
                       </div>
                     </Popover.Panel>
                   </Transition>
@@ -236,48 +165,13 @@ export default function Header() {
                   >
                     <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 transform px-2 sm:px-0">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                        <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                          {resources.map((item) => (
-                            <NavLink
-                              key={item.name}
-                              to={item.to}
-                              className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
-                            >
-                              <item.icon
-                                className="h-6 w-6 flex-shrink-0 text-indigo-600"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">
-                                  {item.name}
-                                </p>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </NavLink>
-                          ))}
-                        </div>
+                       
                         <div className="bg-gray-50 px-5 py-5 sm:px-8 sm:py-8">
                           <div>
                             <h3 className="text-base font-medium text-gray-500">
                               Recent Posts
                             </h3>
-                            <ul role="list" className="mt-4 space-y-4">
-                              {recentPosts.map((post) => (
-                                <li
-                                  key={post.id}
-                                  className="truncate text-base"
-                                >
-                                  <NavLink
-                                    to={post.to}
-                                    className="font-medium text-gray-900 hover:text-gray-700"
-                                  >
-                                    {post.name}
-                                  </NavLink>
-                                </li>
-                              ))}
-                            </ul>
+                            
                           </div>
                           <div className="mt-5 text-sm">
                             <NavLink
@@ -360,36 +254,13 @@ export default function Header() {
               </div>
             </div>
             <div className="space-y-6 py-6 px-5">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <NavLink
-                  to="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Pricing
-                </NavLink>
-
-                <NavLink
-                  to="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Docs
-                </NavLink>
-                {resources.map((item) => (
-                  <NavLink
-                    key={item.name}
-                    to={item.to}
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    {item.name}
-                  </NavLink>
-                ))}
-              </div>
+           
               <div>
                 <NavLink
                   to="#"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-400 px-4 py-2 text-base font-bold text-white shadow-sm hover:text-white"
                 >
-                  Sign up
+                  Sign in
                 </NavLink>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{" "}
@@ -397,7 +268,7 @@ export default function Header() {
                     to="#"
                     className="text-indigo-600 hover:text-indigo-500"
                   >
-                    Sign in
+                    Sign up
                   </NavLink>
                 </p>
               </div>

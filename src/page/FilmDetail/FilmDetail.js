@@ -14,15 +14,10 @@ export default function FilmDetail() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(layThongTinPhimAction(id));
+    window.scrollTo(0,0);
   }, []);
   return (
     <div className="film-detail">
-      {/* <span className="text-white font-semibold text-2xl px-4 hover:text-orange">
-        <NavLink to="/">Trang Chủ</NavLink>
-      </span>
-      <span className="text-cyan-400 font-medium text-3xl">
-        <NavLink to="#">{filmDetail.tenPhim}</NavLink>
-      </span> */}
       <FilmInformation filmDetail={filmDetail} />
       <BookingFilm filmDetail={filmDetail} />
     </div>

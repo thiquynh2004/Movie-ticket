@@ -1,7 +1,57 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
+import {useFormik } from "formik";
 import React from "react";
-
+import { GROUP_ID } from "../../utils/config";
+import * as Yup from "yup";
+import "./signUp.css"
+import { useDispatch } from "react-redux";
+import { dangKyAction } from "../../redux/actions/QuanLyNguoiDungAction";
+import { useNavigate } from "react-router-dom";
 export default function SignUp() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const formik = useFormik({
+    initialValues: {
+      taiKhoan: "",
+      matKhau: "",
+      email: "",
+      soDt: "",
+      maNhom: GROUP_ID,
+      hoTen: "",
+    },
+    validationSchema: Yup.object().shape({
+      email: Yup.string()
+        .email("*Email is invalid")
+        .required("*Email is required")
+        .trim("The contact name cannot include leading and trailing spaces"),
+      matKhau: Yup.string()
+        .required("*Password is required!")
+        .min(6, "*Password must be at least 6 characters long!")
+        .trim("The contact name cannot include leading and trailing spaces"),
+      hoTen: Yup.string()
+        .required("*Name is required!")
+        .min(2, "*Name is too short")
+        .max(50, "*Name is too long!"),
+      taiKhoan: Yup.string()
+        .required("*Name is required!")
+        .min(2, "*Name is too short")
+        .max(50, "*Name is too long!"),
+      soDt: Yup.string()
+        .required("*Phone number is required!")
+        .matches(
+          /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/,
+          "*Phone number is invalid"
+        )
+        .trim("The contact name cannot include leading and trailing spaces"),
+    }),
+    onSubmit: (values) => {
+      console.log("values", values);
+      dispatch(dangKyAction(values))
+      setTimeout(() => {
+        navigate("/signin");
+      }, 3000)
+    },
+  });
   return (
     <div className="sign-up">
       <section className="h-screen">
@@ -15,45 +65,82 @@ export default function SignUp() {
               />
             </div>
             <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-              <form>
+            
+              <form onSubmit={formik.handleSubmit}>
                 {/* Email input */}
                 <div className="mb-6">
                   <input
+                    value={formik.values.hoTen}
+                    onChange={formik.handleChange}
+                    id="hoTen"
+                    name="hoTen"
                     type="text"
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    placeholder="Enter your name"
+                  />
+                  {formik.errors.hoTen && formik.touched.hoTen && (
+              <i className='error'>{formik.errors.hoTen}</i>
+            )}
+                </div>
+                <div className="mb-6">
+                  <input
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    id="email"
+                    name="email"
+                    type="email"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     placeholder="Email address"
                   />
+                     {formik.errors.email && formik.touched.email && (
+              <i className='error'>{formik.errors.email}</i>
+            )}
+            {/* <ErrorMessage name="email" /> */}
                 </div>
+                <div className="mb-6">
+                  <input
+                    value={formik.values.soDt}
+                    onChange={formik.handleChange}
+                    id="soDt"
+                    name="soDt"
+                    type="text"
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    placeholder="Enter your phone number"
+                  />
+                  {formik.errors.soDt && formik.touched.soDt && (
+              <i className='error'>{formik.errors.soDt}</i>
+            )}
+                </div>
+                <div className="mb-6">
+                  <input
+                    value={formik.values.taiKhoan}
+                    onChange={formik.handleChange}
+                    id="taiKhoan"
+                    name="taiKhoan"
+                    type="text"
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    placeholder="Enter your username"
+                  />
+                  {formik.errors.taiKhoan && formik.touched.taiKhoan && (
+              <i className='error'>{formik.errors.taiKhoan}</i>
+            )}
+                </div>
+
                 {/* Password input */}
                 <div className="mb-6">
                   <input
+                  value={formik.values.matKhau}
+                  onChange={formik.handleChange}
+                  id="matKhau"
+                  name="matKhau"
                     type="password"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    placeholder="Password"
+                    placeholder="Enter your password"
                   />
                 </div>
-                <div className="flex justify-between items-center mb-6">
-                  <div className="form-group form-check">
-                    <input
-                      type="checkbox"
-                      className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                      id="exampleCheck3"
-                      defaultChecked
-                    />
-                    <label
-                      className="form-check-label inline-block text-gray-800"
-                      htmlFor="exampleCheck2"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-                  <a
-                    href="#!"
-                    className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
+                {formik.errors.matKhau && formik.touched.matKhau && (
+              <i className='error'>{formik.errors.matKhau}</i>
+            )}
                 {/* Submit button */}
                 <button
                   type="submit"
@@ -61,7 +148,7 @@ export default function SignUp() {
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                 >
-                  Sign in
+                  Sign up
                 </button>
                 <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
                   <p className="text-center font-semibold mx-4 mb-0">OR</p>

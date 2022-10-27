@@ -22,13 +22,13 @@ export default function Home() {
   console.log("arrHeThongRap", arrHeThongRap);
   // console.log("arrCumRap", arrCumRap)
   const dispatch = useDispatch();
-  const arrPhimDangChieu = arrFilm.filter(function (item) {
-    return item.dangChieu === true;
-  });
+  // const arrPhimDangChieu = arrFilm.filter(function (item) {
+  //   return item.dangChieu === true;
+  // });
 
-  const arrPhimSapChieu = arrFilm.filter(function (item) {
-    return item.sapChieu === true;
-  });
+  // const arrPhimSapChieu = arrFilm.filter(function (item) {
+  //   return item.sapChieu === true;
+  // });
   useEffect(() => {
     dispatch(layDanhSachBannerAction());
   }, []);
@@ -46,8 +46,8 @@ export default function Home() {
         <div className="container mx-auto">
           <div className="list-film">
             <ListFilm
-              arrPhimDangChieu={arrPhimDangChieu}
-              arrPhimSapChieu={arrPhimSapChieu}
+              arrFilm={arrFilm}
+
             />
           </div>
           <div className="news">

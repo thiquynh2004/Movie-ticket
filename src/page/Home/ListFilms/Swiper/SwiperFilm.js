@@ -4,34 +4,34 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import "./nowShowing.css";
+// import "./nowShowing.css";
 import { Pagination, Navigation } from "swiper";
 import { useNavigate } from "react-router-dom";
-// import { history } from "../../../../App";
+// // import { history } from "../../../../App";
 
-export default function NowShowing(props) {
-  const navigate = useNavigate()
-  const { arrPhimDangChieu } = props;
-  const renderPhimDangChieu = () => {
-    return arrPhimDangChieu.map((film, index) => {
+export default function SwiperFilm(props) {
+  const { arrFilm } = props;
+  const navigate = useNavigate();
+  const renderFilm = () => {
+    return arrFilm.map((film, index) => {
       return (
         <SwiperSlide key={index}>
           <div
             key={index}
             className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden cursor-pointer"
-            onClick={()=>{
-              navigate(`/detail/${film.maPhim}`)
+            onClick={() => {
+              navigate(`/detail/${film.maPhim}`);
             }}
           >
             <div className="h-64 w-full overflow-hidden ">
               <img
                 className="transition ease-in-out delay-200 hover:scale-110 overflow-hidden"
-                style={{ objectFit: "contain"}}
+                style={{ objectFit: "contain" }}
                 src={film.hinhAnh}
                 alt={film.tenPhim}
                 onError={({ currentTarget }) => {
                   currentTarget.onerror = null; // prevents looping
-                  currentTarget.src="../";
+                  currentTarget.src = "../";
                 }}
               />
             </div>
@@ -54,39 +54,34 @@ export default function NowShowing(props) {
     });
   };
   return (
-    <div className="now-showing">
-      <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
-        slidesPerGroup={4}
-        breakpoints={{
-          320: {
-            slidesPerView: 1,
-          },
-          576: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 50,
-          },
-        }}
-        loop={true}
-        loopFillGroupWithBlank={true}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-      >
-        {renderPhimDangChieu()}
-      </Swiper>
-    </div>
-    // </div>
-    // </section>
-    // </div>
+    <Swiper
+      slidesPerView={4}
+      spaceBetween={30}
+      slidesPerGroup={4}
+      breakpoints={{
+        320: {
+          slidesPerView: 1,
+        },
+        576: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      }}
+      loop={true}
+      loopFillGroupWithBlank={true}
+      navigation={true}
+      modules={[Pagination, Navigation]}
+      className="mySwiper"
+    >
+      {renderFilm()}
+    </Swiper>
   );
 }

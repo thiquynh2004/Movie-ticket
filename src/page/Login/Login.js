@@ -1,9 +1,24 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
+import { useFormik } from "formik";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { dangNhapAction } from "../../redux/actions/QuanLyNguoiDungAction";
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      taiKhoan: "",
+      matKhau: "",
+    },
+    onSubmit: (values) => {
+      console.log("values", values)
+      dispatch(dangNhapAction(values))
+    },
+  });
   return (
-    <div classname="login">
+    <div className="login">
       <section className="h-screen">
         <div className="px-6 h-full text-gray-800">
           <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
@@ -15,7 +30,7 @@ export default function Login() {
               />
             </div>
             <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-              <form>
+              <form onSubmit={formik.handleSubmit}>
                 <div className="flex flex-row items-center justify-center lg:justify-start">
                   <p className="text-lg mb-0 mr-4">Sign in with</p>
                   <button
@@ -84,17 +99,23 @@ export default function Login() {
                   <input
                     type="text"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    id="exampleFormControlInput2"
-                    placeholder="Email address"
+                    id="taiKhoan"
+                    name="taiKhoan"
+                    value={formik.values.taiKhoan}
+                    onChange={formik.handleChange}
+                    placeholder="Enter your username"
                   />
                 </div>
                 {/* Password input */}
                 <div className="mb-6">
                   <input
+                    name="matKhau"
+                    id="matKhau"
                     type="password"
+                    value={formik.values.matKhau}
+                    onChange={formik.handleChange}
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    id="exampleFormControlInput2"
-                    placeholder="Password"
+                    placeholder="Enter your password"
                   />
                 </div>
                 <div className="flex justify-between items-center mb-6">
@@ -111,25 +132,25 @@ export default function Login() {
                       Remember me
                     </label>
                   </div>
-                  <a href="#!" className="text-gray-800">
+                  <NavLink to="#!" className="text-gray-800">
                     Forgot password?
-                  </a>
+                  </NavLink>
                 </div>
                 <div className="text-center lg:text-left">
                   <button
-                    type="button"
+                    type="submit"
                     className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                   >
                     Login
                   </button>
                   <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                     Don't have an account?
-                    <a
-                      href="#!"
+                    <NavLink
+                      to="/signup"
                       className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
                     >
                       Register
-                    </a>
+                    </NavLink>
                   </p>
                 </div>
               </form>
